@@ -1,59 +1,46 @@
-# @lxfriday/smooth-scroll-to
+# @lxfriday/is-empty-object
 
-javascript scroll for anywhere
+Judging whether a variable is an empty object
 
 ## install
 
 ```bash
-npm i @lxfriday/smooth-scroll-to -S
+npm i @lxfriday/is-empty-object -S
 # or
-yarn add @lxfriday/smooth-scroll-to
+yarn add @lxfriday/is-empty-object
 ```
 
 ## params
-`smoothScrollTo(ref, pos[, rate])`
+`smoothScrollTo(obj)`
 
-- `ref` {`HTMLElement`} `required`, the component you want to scroll
-- `pos` {`number`} `required`, the component you want to scroll
-- `rate` {`numbger`} scroll speed, bigger means faster
+- `obj` {`any`} `required` the input variable
 
 ## usage
-// use in react
 
-```jsx harmony
-import React, { Component } from 'react';
-import smoothScrollTo from '@lxfriday/smooth-scroll-to';
+```javascript
+const isEmptyObj = require('..')
 
-class Scroll extends Component {
-  handleScroll = () => {
-    smoothScrollTo(this.scroll, 1000)
-  }
-  
-  render() {
-    return (
-      <div ref={r => (this.scroll = r)} style={{ height: 700 }}>
-        <button onClick={this.handleScroll}>scroll go</button>
-        <div style={{ height: 5000 }}>
-          <div style={{ height: 300, backgroundColor: 'red' }} />
-          <div style={{ height: 300, backgroundColor: 'green' }} />
-          <div style={{ height: 300, backgroundColor: 'yellow' }} />
-          <div style={{ height: 300, backgroundColor: 'red' }} />
-          <div style={{ height: 300, backgroundColor: 'green' }} />
-          <div style={{ height: 300, backgroundColor: 'yellow' }} />
-          <div style={{ height: 300, backgroundColor: 'red' }} />
-          <div style={{ height: 300, backgroundColor: 'green' }} />
-          <div style={{ height: 300, backgroundColor: 'yellow' }} />
-          <div style={{ height: 300, backgroundColor: 'red' }} />
-          <div style={{ height: 300, backgroundColor: 'green' }} />
-          <div style={{ height: 300, backgroundColor: 'yellow' }} />
-          <div style={{ height: 300, backgroundColor: 'red' }} />
-          <div style={{ height: 300, backgroundColor: 'green' }} />
-          <div style={{ height: 300, backgroundColor: 'yellow' }} />
-        </div>
-      </div>
-    )
-  }
-}
+console.log('()', isEmptyObj())
+console.log('{}', isEmptyObj({}))
+console.log('{ a: 1 }', isEmptyObj({ a: 1 }))
+
+const obj1 = {}
+Object.defineProperty(obj1, 'name', {
+  value: 'lxfriday',
+})
+console.log('obj1', isEmptyObj(obj1))
+
+let sym1 = Symbol('name')
+
+const obj2 = { [sym1]: 'lxfriday' }
+
+console.log('obj2', isEmptyObj(obj2))
+
+// () false
+// {} true
+// { a: 1 } false
+// obj1 false
+// obj2 false
 ```
 
 
