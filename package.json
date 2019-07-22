@@ -5,6 +5,7 @@
   "description": "is a empty object?",
   "main": "src/index.js",
   "scripts": {
+    "test": "node ./test/test.js",
     "lint": "eslint src/**/*.js",
     "prettier": "prettier --write src/**/*.js"
   },
